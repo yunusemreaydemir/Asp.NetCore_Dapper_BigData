@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutView.cshtml";
+}
+
+
+<div class="input-group mb-3">
+    <form method="post" id="searchForm">
+        <br />
+        <br />
+        <input type="text" name="keyword" class="form-control" placeholder="Ara" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <br />
+        <div class="input-group-append">
+            <button class="btn btn-outline-primary" type="submit">Ara</button>
+        </div>
+    </form>
+</div>
+
+<div id="searchResult">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>MARKA</th>
+                <th>PLAKA</th>
+                <th>VİTES TÜRÜ</th>
+                <th>YAKIT TİPİ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <var searchResultTable=document.getElementById("searchResult").getElementsByTagName("tbody")[0];
+                 searchResultTable.innerHTML="" ;
+        </tbody>
+    </table>
+</div>
+
+<!-- Required Js -->
+<script src="~/flat-able-lite/dist/assets/js/vendor-all.min.js"></script>
+<script src="~/flat-able-lite/dist/assets/js/plugins/bootstrap.min.js"></script>
+
+<!-- Apex Chart -->
+<script src="~/flat-able-lite/dist/assets/js/plugins/apexcharts.min.js"></script>
+
+
+<!-- custom-chart js -->
+<script src="~/flat-able-lite/dist/assets/js/pages/dashboard-main.js"></script>
+
+<script>
+    document.getElementById("searchForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // Formun submit olayını engelle
+
+        var searchKeyword = document.getElementsByName("keyword")[0].value;
+        // Send the search keyword to the server using AJAX
+        fetch(`/Default/Search?keyword=${encodeURIComponent(searchKeyword)}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); // JSON verilerini konsolda göster
+                // Display search results in the table
+                var searchResultTable = document.getElementById("searchResult").getElementsByTagName("tbody")[0];
+                searchResultTable.innerHTML = "";
+                data.forEach(item => {
+                    var row = searchResultTable.insertRow();
+                    row.insertCell().innerText = item.brand;
+                    row.insertCell().innerText = item.plateprefix;
+                    row.insertCell().innerText = item.shifttype;
+                    row.insertCell().innerText = item.fuel;
+                });
+            });
+    });
+</script>

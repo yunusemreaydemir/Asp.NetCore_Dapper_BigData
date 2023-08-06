@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutView.cshtml";
+}
+
+<h5 class="mt-4">Listeleme</h5>
+<hr>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="card text-white bg-info ">
+            <h5 class="card-header text-white">En Fazla Olan Plaka</h5>
+            <div class="card-body">
+                <h5 class="card-title text-white">@ViewData["plateMax"] -- @ViewData["countMax"]</h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card text-white bg-info ">
+            <h5 class="card-header text-white">En Az Olan Plaka</h5>
+            <div class="card-body">
+                <h5 class="card-title text-white">@ViewData["plateMin"] -- @ViewData["countMin"]</h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card text-white bg-info ">
+            <h5 class="card-header text-white">En Çok Tercih Edilen Vites Türü</h5>
+            <div class="card-body">
+                <h5 class="card-title text-white">@ViewData["shiftType"] -- @ViewData["shiftTypeCount"]</h5>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card text-white bg-secondary ">
+            <h5 class="card-header text-white">En Fazla Olan Araç Markası</h5>
+            <div class="card-body">
+                <h5 class="card-title text-white">@ViewData["brandMax"] -- @ViewData["countMax"] adet</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <div class="card text-white bg-secondary ">
+            <h5 class="card-header text-white">En Az Olan Araç Markası</h5>
+            <div class="card-body">
+                <h5 class="card-title text-white">@ViewData["brandMin"] -- @ViewData["countMin"] adet</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <div class="card text-white bg-secondary ">
+            <h5 class="card-header text-white">En Fazla Tercih Edilen Yakıt Türü</h5>
+            <div class="card-body">
+                <h5 class="card-title text-white">@ViewData["fuelType"] -- @ViewData["fuelTypeCount"]</h5>
+            </div>
+        </div>
+    </div>
+</div>
+
